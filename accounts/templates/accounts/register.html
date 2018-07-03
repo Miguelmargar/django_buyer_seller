@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <h3>register</h3>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        {{ profile_form.as_p }}
         <input type="submit" value="login">
     </form>
 

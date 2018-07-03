@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import UserLoginForm, UserCreationForm
+from .forms import UserLoginForm, UserCreationForm, ProfileRegistrationForm
 
 # Create your views here.
 def get_home(request):
@@ -11,5 +11,6 @@ def login(request):
     
 def register(request):
     form = UserCreationForm()
-    return render(request, "accounts/register.html", { "form": form })
+    profile_form = ProfileRegistrationForm()
+    return render(request, "accounts/register.html", { "form": form, "profile_form": profile_form })
     
