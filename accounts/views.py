@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from .forms import UserLoginForm, UserRegistrationForm, BuyerRegistrationForm, SellerRegistrationForm
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def get_home(request):
@@ -18,7 +20,8 @@ def login(request):
     
             if user is not None:
                 auth.login(request, user)
-                return redirect("/")
+                redirect_to = next = request.GET.get("next", "/")
+                return redirect(redirect_to)
             else:
                 login_form.add_error(None, "Your username or password are incorrect")
     else:
@@ -86,5 +89,7 @@ def logout(request):
     auth.logout(request)
     return redirect('/')    
     
+    
+@login_required(login_url="/accounts/login")    
 def profile(request):
     return render(request, "accounts/profile.html")

@@ -69,6 +69,12 @@ TEMPLATES = [
     },
 ]
 
+# For user name or email authentication when login in
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.EmailAuth'
+]
+
 WSGI_APPLICATION = 'djangousertypes.wsgi.application'
 
 
