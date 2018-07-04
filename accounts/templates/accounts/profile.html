@@ -3,9 +3,14 @@
 {% block content %}
 <h3>Profile</h3>
 
-<P><img src="{{ MEDIA_URL}}{{ user.profile.image}}"</P>
 <p>Username: {{ user.username }}</p>
 <p>EMail: {{ user.email }}</p>
-<p>Bio: {{ user.profile.description }}</p>
+
+{% if user.buyer %}
+<p>You are a buyer</p>
+{% endif %}
+{% if user.seller %}
+<p>You are a seller</p>
+{% endif %}
 
 {% endblock content %}
